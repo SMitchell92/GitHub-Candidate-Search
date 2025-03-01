@@ -4,11 +4,11 @@
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
 # dotenv environment variable files
-.env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
+*.env
+*.env.development.local
+*.env.test.local
+*.env.production.local
+*.env.local
 
 # User-specific files
 *.rsuser
