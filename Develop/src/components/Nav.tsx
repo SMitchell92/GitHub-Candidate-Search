@@ -1,8 +1,34 @@
-const Nav = () => {
-  // TODO: Add necessary code to display the navigation bar and link between the pages
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+
+
+const Nav: React.FC = () => {
+  const currentPage = useLocation().pathname;
   return (
-    <div>Nav</div>
-  )
+      <nav className="nav">
+          <div className="nav-item">
+              <h1>Candidate Search</h1>
+          </div>  
+          <div className="nav-item">
+              <ul className="nav-item">
+              <Link
+                  to="/"
+
+                  className={currentPage === '/' ? 'nav-link active' : 'nav-link'}
+              >
+                  Home
+              </Link>
+              </ul>
+          <ul className="nav-item">
+              <Link
+                  to="/SavedCandidates"
+              >
+                  Potential Candidates
+              </Link>
+          </ul>
+      </div>
+      </nav>
+  );
 };
 
 export default Nav;

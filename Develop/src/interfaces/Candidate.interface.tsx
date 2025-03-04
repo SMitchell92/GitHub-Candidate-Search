@@ -9,6 +9,7 @@ location: string
 email: string
 company: string
 bio: string
-avatar: string
+avatar_url: string
 html_url: string
+login: string
 }
