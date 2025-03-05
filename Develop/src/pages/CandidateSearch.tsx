@@ -21,10 +21,11 @@ const CandidateSearch = () => {
     searchGithub().then((data) => setCandidate(data));
   }, []);
   useEffect(() => {
-    if (candidate.length > 30) {
-      return (<h1>Maximum result inquiries reached, please refresh the page</h1>);
-    else if (candidate.length > 0) {
+    if (candidate.length > 0 && 30 > index) {
       searchGithubUser(candidate[index].login).then((data) => setUserDetails(data));
+    } else if (index > 30) {
+      return
+      <h1> Candidate roster exhausted, please hit refresh</h1>
     }
   }, [candidate, index]);
   console.log(userDetails);

@@ -32,7 +32,7 @@ const CandidateCard = ({
         setIndex(index + 1);
     }
     return (
-        <body>
+        <main>
             <div className="card">
                 <img src={avatar_url} alt={name} />
                 <div className="card-body">
@@ -50,7 +50,7 @@ const CandidateCard = ({
                 <img className="icons" src="./minusSymbol.jpg" alt="minus" onClick={()=>setIndex(index+1)}/>
                 <img className="icons" src="./plusSymbol.jpg" alt="plus" onClick={saveCandidate} />
             </div>
-        </body>
+        </main>
     );
 }
 
