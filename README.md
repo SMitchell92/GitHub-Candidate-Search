@@ -16,7 +16,7 @@ An app designed for employers seeking candidates on GitHub, allowing local stora
 
 ## Installation
 
-Simply go to the url that it's been deployed at on Render.
+Simply go to the url that it's been deployed at on Render at https://github-candidate-search-1-cpcf.onrender.com/
 
 ## Usage
 
@@ -35,3 +35,4 @@ For any further questions, please contact me via one of the following methods: <
 -GitHub Username: SMitchell92  <br/>
 -GitHub Link: [github.com/SMitchell92](github.com/SMitchell92) <br/>
 -Email Address: stuart.mitchell92@gmail.com  <br/>
+-Render deployed webpage: https://github-candidate-search-1-cpcf.onrender.com/ 
