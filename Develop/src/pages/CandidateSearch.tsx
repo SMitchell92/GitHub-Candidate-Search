@@ -4,7 +4,7 @@ import Candidate from '../interfaces/Candidate.interface';
 import CandidateCard from '../components/CandidateCard';
 
 const CandidateSearch = () => {
-  const [candidate, setCandidate] = useState<Candidate[]>([]);
+  const [candidates, setCandidates] = useState<Candidate[]>([]);
   const [index, setIndex] = useState(0);
   const [userDetails, setUserDetails] = useState<Candidate>({
     name: '',
@@ -16,21 +16,22 @@ const CandidateSearch = () => {
     html_url: '',
     login: '',
   });
-  console.log(candidate)
+  //console.log(candidates)
   useEffect(() => {
-    searchGithub().then((data) => setCandidate(data));
+    searchGithub().then((data) => setCandidates(data));
   }, []);
+
   useEffect(() => {
-    if (candidate.length > 0 && 31 > index) {
-      searchGithubUser(candidate[index].login).then((data) => setUserDetails(data));
-    } else if (index > 31) {
-      return
-      <h1> Candidate roster exhausted, please hit refresh</h1>
-    }
-  }, [candidate, index]);
-  console.log(userDetails);
+    //console.log(index);
+    if (index >= candidates.length) { return; }
+
+    searchGithubUser(candidates[index].login).then((data) => setUserDetails(data));
+  }, [candidates, index]);
+
+  //console.log(userDetails);
   return (<div><h1>Candidate Search</h1>
     <main>
+      {index< candidates.length?
       <CandidateCard
         login={userDetails.login || 'N/A'}
         name={userDetails.name || 'N/A'}
@@ -42,7 +43,9 @@ const CandidateSearch = () => {
         html_url={userDetails.html_url || 'N/A'}
         index={index}
         setIndex={setIndex}
+        numCandidates={candidates.length}
       />
+      :<p>No remaining candidates, please hit refresh to load more</p>}
     </main>
   </div>
   );

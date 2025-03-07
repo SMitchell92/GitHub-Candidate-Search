@@ -11,6 +11,7 @@ type CandidateCardProps = {
     html_url: string;
     index: number;
     setIndex: (index: number) => void;
+    numCandidates: number;
 };
 
 const CandidateCard = ({
@@ -24,15 +25,23 @@ const CandidateCard = ({
     html_url,
     index,
     setIndex,
+    numCandidates,
 }: CandidateCardProps) => {
-    const saveCandidate = () => {
-        const candidates = JSON.parse(localStorage.getItem('candidates') || '[]');
-        candidates.push({ name, location, email, company, bio, avatar_url, html_url });
-        localStorage.setItem('candidates', JSON.stringify(candidates));
-        setIndex(index + 1);
+    const nextCandidate = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        // if the index is greater than or equal to the length of the candidates, return
+        if (index >= numCandidates) {
+            return;
+        }
+        if ((event.currentTarget as HTMLButtonElement).dataset.action === 'save') {
+            // save candidate if plus button is clicked
+            const candidates = JSON.parse(localStorage.getItem('candidates') || '[]');
+            candidates.push({ name, location, email, company, bio, avatar_url, html_url });
+            localStorage.setItem('candidates', JSON.stringify(candidates));
+    }
+    setIndex(index + 1);
     }
     return (
-        <main>
+        <>
             <div className="card">
                 <img src={avatar_url} alt={name} />
                 <div className="card-body">
@@ -47,10 +56,10 @@ const CandidateCard = ({
                 </div>
             </div>
             <div className='icons'>
-                <img className="icons" src="./minusSymbol.jpg" alt="minus" onClick={()=>setIndex(index+1)}/>
-                <img className="icons" src="./plusSymbol.jpg" alt="plus" onClick={saveCandidate} />
+                <button data-action="reject" onClick={(e)=>{nextCandidate(e)}}><img className="icons" src="./minusSymbol.jpg" alt="minus"/></button>
+                <button data-action="save" onClick={(e)=>{nextCandidate(e)}}><img className="icons" src="./plusSymbol.jpg" alt="plus"/></button>
             </div>
-        </main>
+        </>
     );
 }
 
